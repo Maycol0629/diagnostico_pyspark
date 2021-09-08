@@ -17,6 +17,7 @@ class Transformer(Writer):
         df = self.get_potential_vs_overall(df)
         df = self.evaluate_players(df)
         self.test_evaluate_players_player_cat(df)
+        self.test_evaluate_players_player_cat_C(df)
 
         # for show 100 records after your transformations and show the DataFrame schema
         df.show(n=100, truncate=False)
@@ -66,8 +67,6 @@ class Transformer(Writer):
                   ['C'],['D']],
             schema=['player_cat'])
         self.asserTrue(self.test_data(evaluated_df, expected_Df))
-
-
 
     def test_evaluate_players_player_cat_C(self, df: DataFrame):
         test_df= df.filter(player_cat.column()=="C").select(potential_vs_overall.column())
